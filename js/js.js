@@ -1,5 +1,47 @@
 let lista = [3,1,8,6,10,1];
 
+//Leer archivo
+const input = document.getElementById('file');
+const editor = document.getElementById('contenido');
+input.addEventListener('change', function () {
+  if (input.files.length > 0) {
+    readFile(input.files[0]);
+  }
+});
+
+function readFile(file) {
+  const reader = new FileReader();
+  reader.onload = function() {
+    editor.value= reader.result; 
+  }
+  reader.readAsText(file);
+
+  console.log(contenido);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Leer digitos ingresados.
 function capturar() {
 
     let dato = document.getElementById("dato").value;
@@ -71,6 +113,24 @@ function ordenarBidireccional() {
 }
 
 function MetodoIncersion() {
+    console.time();
+    for (n = 0; n < lista.length - 1; n++) {
+        for (o = n+1; o >= 0 ; o--) {
+            if ((lista[o-1] > lista[o])) {
+                let aux = lista[o-1];
+                lista[o-1] = lista[o];
+                lista[o] = aux;
+                
+            }
+          //  console.log(lista);
+        }
+        //console.log('resultado de la vuelta '+ n +" lista: "+lista);
+    }
+    console.log('resultado finallito '+lista);
+    console.timeEnd();
+}
+
+function MetodoporCasillas() {
     console.time();
     for (n = 0; n < lista.length - 1; n++) {
         for (o = n+1; o >= 0 ; o--) {
