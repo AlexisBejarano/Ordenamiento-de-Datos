@@ -12,8 +12,17 @@ input.addEventListener('change', function () {
 function readFile(file) {
   const reader = new FileReader();
 
+
   reader.onload = function() {
-    editor.value= reader.result; 
+    editor.value= reader.result;
+    console.log(editor.value);
+
+    let archivoLeido = editor.value;
+  
+  lista = archivoLeido.split('\n');
+
+  console.log(lista[4]);
+  console.log(lista);
   }
   reader.readAsText(file);
 
@@ -133,19 +142,52 @@ function MetodoIncersion() {
 
 function MetodoporCasillas() {
     console.time();
-    for (n = 0; n < lista.length - 1; n++) {
-        for (o = n+1; o >= 0 ; o--) {
-            if ((lista[o-1] > lista[o])) {
-                let aux = lista[o-1];
-                lista[o-1] = lista[o];
-                lista[o] = aux;
-                
-            }
-          //  console.log(lista);
-        }
-        //console.log('resultado de la vuelta '+ n +" lista: "+lista);
-    }
-    console.log('resultado finallito '+lista);
+   
+const bucketSort = lista => {
+   if (lista.length === 0) {
+      return lista;
+   }
+   let i,
+   minValue = lista[0],
+   maxValue = lista[0],
+   bucketSize = 5;
+   lista.forEach(function (currentVal) {
+      if (currentVal < minValue) {
+         minValue = currentVal;
+      } else if (currentVal > maxValue) {
+         maxValue = currentVal;
+      }
+   })
+   let bucketCount = Math.floor((maxValue - minValue) / bucketSize) + 1;
+   let allBuckets = new Array(bucketCount);
+   for (i = 0; i < allBuckets.length; i++) {
+      allBuckets[i] = [];
+   }
+   lista.forEach(function (currentVal) {
+      allBuckets[Math.floor((currentVal - minValue) / bucketSize)].push(currentVal);
+   });
+   lista.length = 0;
+   allBuckets.forEach(function(bucket) {
+      insertion(bucket);
+      bucket.forEach(function (element) {
+         lista.push(element)
+      });
+   });
+   return lista;
+}
+const insertion = lista => {
+   let length = lista.length;
+   let i, j;
+   for(i = 1; i < length; i++) {
+      let temp = lista[i];
+      for(j = i - 1; j >= 0 && lista[j] > temp; j--) {
+         lista[j+1] = lista[j];
+      }
+      lista[j+1] = temp;
+   }
+   return lista;
+};
+console.log(bucketSort(lista));
     console.timeEnd();
 }
 
