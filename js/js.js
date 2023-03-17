@@ -11,12 +11,13 @@ input.addEventListener('change', function () {
 
 function readFile(file) {
   const reader = new FileReader();
+
   reader.onload = function() {
     editor.value= reader.result; 
   }
   reader.readAsText(file);
 
-  console.log(contenido);
+  
 }
 
 
@@ -146,4 +147,69 @@ function MetodoporCasillas() {
     }
     console.log('resultado finallito '+lista);
     console.timeEnd();
+}
+
+function MetodoShell() {
+    console.time();
+    for (n = 0; n < lista.length - 1; n++) {
+        for (o = n+1; o >= 0 ; o--) {
+            if ((lista[o-1] > lista[o])) {
+                let aux = lista[o-1];
+                lista[o-1] = lista[o];
+                lista[o] = aux;
+                
+            }
+          //  console.log(lista);
+        }
+        //console.log('resultado de la vuelta '+ n +" lista: "+lista);
+    }
+    console.log('resultado del metodo de Shell '+lista);
+    console.timeEnd();
+}
+
+function radixSort(arr) {
+  const getMax = () => {
+    let max = 0;
+    for (let num of arr) {
+      if (num > max) {
+        max = num;
+      }
+    }
+    return max;
+  }
+
+  const countSort = (arr, exp) => {
+    const output = new Array(arr.length);
+    const count = new Array(10).fill(0);
+
+    for (let num of arr) {
+      const digit = Math.floor(num / exp) % 10;
+      count[digit]++;
+    }
+
+    for (let i = 1; i < count.length; i++) {
+      count[i] += count[i - 1];
+    }
+
+    for (let i = arr.length - 1; i >= 0; i--) {
+      const digit = Math.floor(arr[i] / exp) % 10;
+      output[count[digit] - 1] = arr[i];
+      count[digit]--;
+    }
+
+    for (let i = 0; i < arr.length; i++) {
+      arr[i] = output[i];
+    }
+
+  }
+
+  const max = getMax();
+
+  for (let exp = 1; Math.floor(max / exp) > 0; exp *= 10) {
+    countSort(arr, exp);
+  }
+
+  return arr;
+
+  console.log(max);
 }
