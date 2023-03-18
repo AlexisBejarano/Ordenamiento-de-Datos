@@ -1,4 +1,6 @@
-let lista = [3, 1, 8, 6, 10, 1];
+let lista = [];
+let cantidadDatosLista = 0;
+console.log(lista);
 //Leer archivo
 const input = document.getElementById('file');
 const editor = document.getElementById('contenido');
@@ -12,42 +14,18 @@ function readFile(file) {
     const reader = new FileReader();
     reader.onload = function() {
         editor.value = reader.result;
-        console.log(editor.value);
         //metemos los datos capturados a una variable
         let archivoLeido = editor.value;
-        //separamos el archivo por Enter y lo metemos al arreglo.
-        lista = archivoLeido.split('\n');
-        //Contar cuantos objetos hay en el arreglo.
-        let cantidadConjuntos = lista.length;
-        console.log(cantidadConjuntos);
-        console.log(lista);
-
-        //Grafica
-        var trace1 = {
-            type: 'bar',
-            x: cantidadConjuntos,
-            y: lista,
-            marker: {
-                color: '#C8A2C8',
-                line: {
-                    width: 1
-                }
-            }
-        };
-        var data = [trace1];
-        var layout = {
-            title: 'Responsive to window\'s size!',
-            font: {
-                size: 18
-            }
-        };
-        var config = {
-            responsive: true
-        }
-        Plotly.newPlot('myDiv', data, layout, config);
+        console.log(archivoLeido);
+        //separamos el archivo por Enter y lo metemos al arreglo con el metodo .split('\n').
+        //con .map(number) cambiamos el arreglo que era String a Entero.
+        lista = archivoLeido.split('\n').map(Number);
+        console.log("El arreglo es : ", lista);
+        //Metemos en variable la cantidad que contiene la Lista.
+        cantidadDatosLista = lista.length;
+        
     }
     reader.readAsText(file);
-    //fin grafica
 }
 //Leer digitos ingresados.
 function capturar() {
@@ -84,6 +62,30 @@ function ordenarBurbuja() {
         //console.log('resultado final '+lista);
     }
     console.log('resultado finallito ' + lista);
+    //Grafica
+        var trace1 = {
+            type: 'bar',
+            x: cantidadDatosLista,
+            y: lista,
+            marker: {
+                color: '#C8A2C8',
+                line: {
+                    width: 1
+                }
+            }
+        };
+        var data = [trace1];
+        var layout = {
+            title: 'Responsive to window\'s size!',
+            font: {
+                size: 18
+            }
+        };
+        var config = {
+            responsive: true
+        }
+        Plotly.newPlot('myDiv', data, layout, config);
+        //fin grafica
 }
 
 function ordenarBidireccional() {
