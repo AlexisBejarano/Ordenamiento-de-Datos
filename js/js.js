@@ -1,4 +1,5 @@
 let lista = [];
+let preLista = [];
 let cantidadDatosLista = 0;
 console.log(lista);
 //Leer archivo
@@ -20,18 +21,50 @@ function readFile(file) {
         //separamos el archivo por Enter y lo metemos al arreglo con el metodo .split('\n').
         //con .map(number) cambiamos el arreglo que era String a Entero.
         lista = archivoLeido.split('\n').map(Number);
-        console.log("El arreglo es : ", lista);
+        console.log("El arreglo es: ", lista);
         //Metemos en variable la cantidad que contiene la Lista.
         cantidadDatosLista = lista.length;
-        
+        //Grafica
+        var trace1 = {
+            type: 'bar',
+            x: cantidadDatosLista,
+            y: lista,
+            marker: {
+                color: '#C8A2C8',
+                line: {
+                    width: 1
+                }
+            }
+        };
+        var data = [trace1];
+        var layout = {
+            title: 'Datos Desordenados Registrados',
+            font: {
+                size: 18
+            }
+        };
+        var config = {
+            responsive: true
+        }
+        Plotly.newPlot('graficaDesordenada', data, layout, config);
+        //fin grafica
     }
     reader.readAsText(file);
 }
 //Leer digitos ingresados.
 function capturar() {
     let dato = document.getElementById("dato").value;
-    lista.push(dato);
-    console.log(lista);
+    if (dato == "") {
+        window.alert("No se permite caracter String");
+        document.getElementById("dato").value = "";
+    } 
+    else
+        preLista.push(dato);
+        lista = preLista.map(Number);
+        console.log(lista);
+        document.getElementById('contenido').innerHTML = lista;
+        document.getElementById("dato").value = "";
+    
 }
 
 function busquedaSucesiva() {
@@ -63,29 +96,30 @@ function ordenarBurbuja() {
     }
     console.log('resultado finallito ' + lista);
     //Grafica
-        var trace1 = {
-            type: 'bar',
-            x: cantidadDatosLista,
-            y: lista,
-            marker: {
-                color: '#C8A2C8',
-                line: {
-                    width: 1
-                }
+    var trace1 = {
+        type: 'bar',
+        x: cantidadDatosLista,
+        y: lista,
+        marker: {
+            color: '#C8A2C8',
+            line: {
+                width: 1
             }
-        };
-        var data = [trace1];
-        var layout = {
-            title: 'Responsive to window\'s size!',
-            font: {
-                size: 18
-            }
-        };
-        var config = {
-            responsive: true
         }
-        Plotly.newPlot('myDiv', data, layout, config);
-        //fin grafica
+    };
+    var data = [trace1];
+    var layout = {
+        title: 'Datos Ordenados Burbuja',
+        font: {
+            size: 18
+        }
+    };
+    var config = {
+        responsive: true
+    }
+    Plotly.newPlot('graficaBurbuja', data, layout, config);
+    //fin grafica
+    document.getElementById('DatosOrdenadosBurbuja').innerHTML = lista;
 }
 
 function ordenarBidireccional() {
