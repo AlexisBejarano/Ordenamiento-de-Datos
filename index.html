@@ -17,29 +17,35 @@
     <body>
         <div class="container-fluid">
             <div class="row main-capturar">
-                <p>
+                <h3>
                     Selección de datos
-                </p>
+                </h3>
             </div>
             <div class="row main-capturar">
                 <div class="col">
-                    <p>Agregar Datos Manual</p>
+                    <p class="margin-bottom">
+                        Agregar Datos Manual
+                    </p>
                     <input class="styleInput" id="dato" name="datoIngresadoDeUsuario" placeholder="Ingrese Numero" type="number"/>
                     <button class="styleButton" onclick="capturar()" type="button">
                         Capturar
                     </button>
                 </div>
-                <div class="col">
-                    <p>Agregar Datos Por Archivo</p>
+                <div class="col borderRight">
+                    <p class="margin-bottom">
+                        Agregar Datos Por Archivo
+                    </p>
                     <input id="file" name="archivo" type="file"/>
                 </div>
             </div>
+            <div class="row containerVistaPrevia">
+                <p>
+                    Los datos ingresados son:
+                </p>
+                <textarea cols="30" id="contenido" rows="4" style="min-height:100px;max-height:300px">
+                </textarea>
+            </div>
         </div>
-        <p>
-            Los datos ingresados son:
-        </p>
-        <textarea cols="30" id="contenido" rows="4" style="width:500px;height:300px">
-        </textarea>
         <div id="graficaDesordenada">
             <!-- Plotly chart will be drawn inside this DIV -->
         </div>
