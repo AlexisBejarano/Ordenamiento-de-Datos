@@ -42,12 +42,11 @@
                 <div class="textReacomodo" id="cantidadDatosIngresados">
                     Previsualización de datos ingresados
                 </div>
-                <!--<div cols="30" id="contenido" rows="4" class="prev-DatosIngresados">
-                </div>-->
-                <textarea cols="30" id="contenido" rows="4" style="min-height:100px;max-height:300px">NO INGRESAR DATOS AQUIIII
-                </textarea>
+                  <!-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ATENTO DEJAR ESTO TOODO PEGADOOOO PARA EVITAR BUG-------------------------------------------------------------------->
+                <textarea cols="30" id="contenido" placeholder="NO INGRESE DATOS AQUI" rows="4" style="min-height:100px;max-height:300px"></textarea>
+                <!--ATENTO DEJAR ESTO TOODO PEGADOOOO PARA EVITAR BUG------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
             </div>
-            <div id="graficaDesordenada" class="graficaDesordenada">
+            <div class="graficaDesordenada" id="graficaDesordenada">
                 <!-- Plotly chart will be drawn inside this DIV -->
             </div>
             <hr/>
@@ -56,11 +55,13 @@
                     Busqueda de sucesiva
                 </p>
                 <div class="inputBusquedaSucesiva">
-                    <input class="styleInput" id="datoBusqueda" name="datoIngresadoDeUsuarioBusqueda" placeholder="Ingrese Numero a buscar" type="number">
+                    <input class="styleInput" id="datoBusqueda" name="datoIngresadoDeUsuarioBusqueda" placeholder="Ingrese Numero a buscar" type="number"/>
                     <button class="styleButton" onclick="busquedaSucesiva()" type="button">
                         Capturar
                     </button>
-                    <div id="busquedaSucesivaDato">...</div>
+                    <div id="busquedaSucesivaDato">
+                        ...
+                    </div>
                 </div>
             </div>
             <hr/>
