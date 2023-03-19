@@ -38,3 +38,38 @@ p{
 .margin-bottom{
 	margin-bottom: 10px;
 }
+
+.textReacomodo{
+	display: block;
+}
+
+.main-busquedaSucesiva{
+	width: 800px;
+	margin-top: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+.styleInput{
+	width: 200px;
+}
+
+.styleButton{
+	width: 100px;
+}
+
+.inputBusquedaSucesiva{
+	margin: auto;
+}
+
+.graficaDesordenada{
+	margin-top: 10px;
+}
+
+.prev-DatosIngresados{
+	margin: auto;
+	min-height:100px;
+	max-height:300px;
+	border: 1px solid black;
+}

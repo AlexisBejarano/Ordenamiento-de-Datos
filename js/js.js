@@ -1,6 +1,32 @@
 let lista = [];
 let preLista = [];
 let cantidadDatosLista = 0;
+
+
+//Grafica
+        var trace1 = {
+            type: 'bar',
+            x: cantidadDatosLista,
+            y: lista,
+            marker: {
+                color: '#C8A2C8',
+                line: {
+                    width: 1
+                }
+            }
+        };
+        var data = [trace1];
+        var layout = {
+            title: 'Datos Registrados',
+            font: {
+                size: 18
+            }
+        };
+        var config = {
+            responsive: true
+        }
+        Plotly.newPlot('graficaDesordenada', data, layout, config);
+        //fin grafica
 console.log(lista);
 //Leer archivo
 const input = document.getElementById('file');
@@ -38,7 +64,7 @@ function readFile(file) {
         };
         var data = [trace1];
         var layout = {
-            title: 'Datos Desordenados Registrados',
+            title: 'Datos Registrados',
             font: {
                 size: 18
             }
@@ -64,21 +90,53 @@ function capturar() {
         console.log(lista);
         document.getElementById('contenido').innerHTML = lista;
         document.getElementById("dato").value = "";
+        document.getElementById('cantidadDatosIngresados').innerHTML = "La cantidad de datos ingresados son: "+lista.length;
+
+        //Grafica
+        var trace1 = {
+            type: 'bar',
+            x: cantidadDatosLista,
+            y: lista,
+            marker: {
+                color: '#C8A2C8',
+                line: {
+                    width: 1
+                }
+            }
+        };
+        var data = [trace1];
+        var layout = {
+            title: 'Datos Registrados',
+            font: {
+                size: 18
+            }
+        };
+        var config = {
+            responsive: true
+        }
+        Plotly.newPlot('graficaDesordenada', data, layout, config);
+        //fin grafica
     
 }
 
 function busquedaSucesiva() {
     let busqueda = document.getElementById("datoBusqueda").value;
+    console.log(busqueda);
+    if (busqueda == "") {
+        window.alert("No se permite caracter String");
+        document.getElementById("datoBusqueda").value = "";
+    } 
+    else
     var bandera = true;
     for (i = 0; i <= lista.length; i++) {
         if (lista[i] == busqueda) {
-            console.log('el numero ' + busqueda + ' esta en la posiscion numero ' + i);
+            document.getElementById("busquedaSucesivaDato").innerHTML = "el numero " + busqueda + " esta en la posiscion numero " + i;
             bandera = false;
             i = lista.length + 1;
         }
     }
     if (bandera == true) {
-        console.log('No se encontro el numero');
+        document.getElementById("busquedaSucesivaDato").innerHTML = "No se encontro el numero";
     }
 }
 

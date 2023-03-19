@@ -39,23 +39,33 @@
                 </div>
             </div>
             <div class="row containerVistaPrevia">
-                <p>
-                    Los datos ingresados son:
-                </p>
+                <div class="textReacomodo" id="cantidadDatosIngresados">
+                    Previsualización de datos ingresados
+                </div>
+                <!--<div cols="30" id="contenido" rows="4" class="prev-DatosIngresados">
+                </div>-->
                 <textarea cols="30" id="contenido" rows="4" style="min-height:100px;max-height:300px">
                 </textarea>
             </div>
+            <div id="graficaDesordenada" class="graficaDesordenada">
+                <!-- Plotly chart will be drawn inside this DIV -->
+            </div>
+            <hr/>
+            <div class="row main-busquedaSucesiva">
+                <p>
+                    Busqueda de sucesiva
+                </p>
+                <div class="inputBusquedaSucesiva">
+                    <input class="styleInput" id="datoBusqueda" name="datoIngresadoDeUsuarioBusqueda" placeholder="Ingrese Numero a buscar"/ type="number">
+                    <button class="styleButton" onclick="busquedaSucesiva()" type="button">
+                        Capturar
+                    </button>
+                    <div id="busquedaSucesivaDato">...</div>
+                </div>
+            </div>
+            <hr/>
+            <!--ACABA EL CONAINER-FLUID-->
         </div>
-        <div id="graficaDesordenada">
-            <!-- Plotly chart will be drawn inside this DIV -->
-        </div>
-        <p>
-            Busqueda de sucesiva
-        </p>
-        <input class="styleInput" id="datoBusqueda" name="datoIngresadoDeUsuarioBusqueda" placeholder="Ingrese Numero a buscar"/>
-        <button class="styleButton" onclick="busquedaSucesiva()" type="button">
-            Capturar
-        </button>
         <p>
             Acomodo de burbuja
         </p>
@@ -70,24 +80,28 @@
         </p>
         <div id="DatosOrdenadosBurbuja">
         </div>
+        <hr/>
         <p>
             Argoritmo Burbujas bidireccional
         </p>
         <button class="styleButton" onclick="ordenarBidireccional()" type="button">
             Buscar
         </button>
+        <hr/>
         <p>
             Argoritmo de insercion
         </p>
         <button class="styleButton" onclick="MetodoIncersion()" type="button">
             Buscar
         </button>
+        <hr/>
         <p>
             Argoritmo de Shell
         </p>
         <button class="styleButton" onclick="MetodoShell()" type="button">
             Buscar
         </button>
+        <hr/>
         <p>
             Argoritmo de Radix
         </p>
