@@ -1,33 +1,31 @@
-let lista = [];
+let lista = [9, 9, 6, 6, 2, 2, 9, 9, 5, 5, 1, 1, 9, 9];
 let preLista = [];
 let cantidadDatosLista = 0;
-
-
 //Grafica
-        var trace1 = {
-            type: 'bar',
-            x: cantidadDatosLista,
-            y: lista,
-            marker: {
-                color: '#C8A2C8',
-                line: {
-                    width: 1
-                }
-            }
-        };
-        var data = [trace1];
-        var layout = {
-            title: 'Datos Registrados',
-            font: {
-                size: 18
-            }
-        };
-        var config = {
-            responsive: true
+var trace1 = {
+    type: 'bar',
+    x: cantidadDatosLista,
+    y: lista,
+    marker: {
+        color: '#C8A2C8',
+        line: {
+            width: 1
         }
-        Plotly.newPlot('graficaDesordenada', data, layout, config);
-        //fin grafica
-console.log(lista);
+    }
+};
+var data = [trace1];
+var layout = {
+    title: 'Datos Registrados',
+    font: {
+        size: 18
+    }
+};
+var config = {
+    responsive: true
+}
+Plotly.newPlot('graficaDesordenada', data, layout, config);
+//fin grafica
+//console.log(lista);
 //Leer archivo
 const input = document.getElementById('file');
 const editor = document.getElementById('contenido');
@@ -43,11 +41,11 @@ function readFile(file) {
         editor.value = reader.result;
         //metemos los datos capturados a una variable
         let archivoLeido = editor.value;
-        console.log(archivoLeido);
+        //console.log(archivoLeido);
         //separamos el archivo por Enter y lo metemos al arreglo con el metodo .split('\n').
         //con .map(number) cambiamos el arreglo que era String a Entero.
         lista = archivoLeido.split('\n').map(Number);
-        console.log("El arreglo es: ", lista);
+        //console.log("El arreglo es: ", lista);
         //Metemos en variable la cantidad que contiene la Lista.
         cantidadDatosLista = lista.length;
         //Grafica
@@ -83,51 +81,45 @@ function capturar() {
     if (dato == "") {
         window.alert("No se permite caracter String");
         document.getElementById("dato").value = "";
-    } 
-    else
-        preLista.push(dato);
-        lista = preLista.map(Number);
-        console.log(lista);
-        document.getElementById('contenido').innerHTML = lista;
-        document.getElementById("dato").value = "";
-        document.getElementById('cantidadDatosIngresados').innerHTML = "La cantidad de datos ingresados son: "+lista.length;
-
-        //Grafica
-        var trace1 = {
-            type: 'bar',
-            x: cantidadDatosLista,
-            y: lista,
-            marker: {
-                color: '#C8A2C8',
-                line: {
-                    width: 1
-                }
+    } else preLista.push(dato);
+    lista = preLista.map(Number);
+    //console.log(lista);
+    document.getElementById('contenido').innerHTML = lista;
+    document.getElementById("dato").value = "";
+    document.getElementById('cantidadDatosIngresados').innerHTML = "La cantidad de datos ingresados son: " + lista.length;
+    //Grafica
+    var trace1 = {
+        type: 'bar',
+        x: cantidadDatosLista,
+        y: lista,
+        marker: {
+            color: '#C8A2C8',
+            line: {
+                width: 1
             }
-        };
-        var data = [trace1];
-        var layout = {
-            title: 'Datos Registrados',
-            font: {
-                size: 18
-            }
-        };
-        var config = {
-            responsive: true
         }
-        Plotly.newPlot('graficaDesordenada', data, layout, config);
-        //fin grafica
-    
+    };
+    var data = [trace1];
+    var layout = {
+        title: 'Datos Registrados',
+        font: {
+            size: 18
+        }
+    };
+    var config = {
+        responsive: true
+    }
+    Plotly.newPlot('graficaDesordenada', data, layout, config);
+    //fin grafica
 }
 
 function busquedaSucesiva() {
     let busqueda = document.getElementById("datoBusqueda").value;
-    console.log(busqueda);
+    //console.log(busqueda);
     if (busqueda == "") {
         window.alert("No se permite caracter String");
         document.getElementById("datoBusqueda").value = "";
-    } 
-    else
-    var bandera = true;
+    } else var bandera = true;
     for (i = 0; i <= lista.length; i++) {
         if (lista[i] == busqueda) {
             document.getElementById("busquedaSucesivaDato").innerHTML = "el numero " + busqueda + " esta en la posiscion numero " + i;
@@ -141,18 +133,19 @@ function busquedaSucesiva() {
 }
 
 function ordenarBurbuja() {
+    console.time();
     for (l = 0; l < lista.length - 1; l++) {
         for (k = 0; k <= lista.length - 2 - l; k++) {
             if (lista[k] > lista[k + 1]) {
                 let aux = lista[k];
                 lista[k] = lista[k + 1];
                 lista[k + 1] = aux;
+                //console.log("if: " +lista);
             }
-            //console.log(lista);
         }
-        //console.log('resultado final '+lista);
     }
-    console.log('resultado finallito ' + lista);
+    //console.timeEnd();
+    console.log('resultado final ' + lista);
     //Grafica
     var trace1 = {
         type: 'bar',
@@ -175,13 +168,14 @@ function ordenarBurbuja() {
     var config = {
         responsive: true
     }
-    Plotly.newPlot('graficaBurbuja', data, layout, config);
+    Plotly.newPlot('graficaBurbuja', data, layout, config)
     //fin grafica
     document.getElementById('DatosOrdenadosBurbuja').innerHTML = lista;
 }
 
 function ordenarBidireccional() {
     //console.log('La lista es: ' + lista);
+    console.time();
     for (l = 0; l < lista.length - 1; l++) {
         for (k = 0; k <= lista.length - 2 - l; k++) {
             if (lista[k] > lista[k + 1]) {
@@ -190,20 +184,45 @@ function ordenarBidireccional() {
                 lista[k + 1] = aux;
                 //console.log('resultado final if 1 | '+lista);
             }
-            //console.log('resultado final for 1 | '+lista);
         }
-        for (m = 0; m < lista.length - 1; m++) {
-            if (lista[lista.length - 1 - m] < lista[lista.length - 2 - m]) {
-                let aux2 = lista[lista.length - 2 - m];
-                lista[lista.length - 2 - m] = lista[lista.length - 1 - m];
-                lista[lista.length - 1 - m] = aux2;
+        for (m = 0; m < lista.length - 2; m++) {
+            if (lista[lista.length - 2 - m] < lista[lista.length - 3 - m]) {
+                let aux2 = lista[lista.length - 3 - m];
+                lista[lista.length - 3 - m] = lista[lista.length - 2 - m];
+                lista[lista.length - 2 - m] = aux2;
                 //console.log('resultado if '+lista);
             }
             //console.log('resultado del for 2 | '+lista);
         }
         //console.log('resultado final de los dos for | '+lista);
     }
-    console.log('resultado final del for main | ' + lista);
+    //console.log('resultado del metodo bidireccional ' + lista);
+    console.timeEnd();
+    //Grafica
+    var trace1 = {
+        type: 'bar',
+        x: cantidadDatosLista,
+        y: lista,
+        marker: {
+            color: '#C8A2C8',
+            line: {
+                width: 1
+            }
+        }
+    };
+    var data = [trace1];
+    var layout = {
+        title: 'Datos casillas',
+        font: {
+            size: 18
+        }
+    };
+    var config = {
+        responsive: true
+    }
+    Plotly.newPlot('graficaBidireccional', data, layout, config);
+    //fin grafica
+    document.getElementById('DatosOrdenadosBidireccional').innerHTML = lista;
 }
 
 function MetodoIncersion() {
@@ -219,8 +238,33 @@ function MetodoIncersion() {
         }
         //console.log('resultado de la vuelta '+ n +" lista: "+lista);
     }
-    console.log('resultado finallito ' + lista);
+    //console.log('resultado del metodo de insercion ' + lista);
     console.timeEnd();
+    //Grafica
+    var trace1 = {
+        type: 'bar',
+        x: cantidadDatosLista,
+        y: lista,
+        marker: {
+            color: '#C8A2C8',
+            line: {
+                width: 1
+            }
+        }
+    };
+    var data = [trace1];
+    var layout = {
+        title: 'Datos insercion',
+        font: {
+            size: 18
+        }
+    };
+    var config = {
+        responsive: true
+    }
+    Plotly.newPlot('graficaInsercion', data, layout, config);
+    //fin grafica
+    document.getElementById('DatosOrdenadosInsercion').innerHTML = lista;
 }
 
 function MetodoporCasillas() {
@@ -269,8 +313,33 @@ function MetodoporCasillas() {
         }
         return lista;
     };
-    console.log(bucketSort(lista));
+    console.log("Resultadod el metodo de casillas" + bucketSort(lista));
     console.timeEnd();
+    //Grafica
+    var trace1 = {
+        type: 'bar',
+        x: cantidadDatosLista,
+        y: lista,
+        marker: {
+            color: '#C8A2C8',
+            line: {
+                width: 1
+            }
+        }
+    };
+    var data = [trace1];
+    var layout = {
+        title: 'Datos casillas',
+        font: {
+            size: 18
+        }
+    };
+    var config = {
+        responsive: true
+    }
+    Plotly.newPlot('graficaCasillas', data, layout, config);
+    //fin grafica
+    document.getElementById('DatosOrdenadosCasillas').innerHTML = lista;
 }
 
 function MetodoShell() {
@@ -286,43 +355,100 @@ function MetodoShell() {
         }
         //console.log('resultado de la vuelta '+ n +" lista: "+lista);
     }
-    console.log('resultado del metodo de Shell ' + lista);
+    //console.log('resultado del metodo de Shell ' + lista);
     console.timeEnd();
-}
-
-function radixSort(arr) {
-    const getMax = () => {
-        let max = 0;
-        for (let num of arr) {
-            if (num > max) {
-                max = num;
+    //Grafica
+    var trace1 = {
+        type: 'bar',
+        x: cantidadDatosLista,
+        y: lista,
+        marker: {
+            color: '#C8A2C8',
+            line: {
+                width: 1
             }
         }
-        return max;
+    };
+    var data = [trace1];
+    var layout = {
+        title: 'Datos Shell',
+        font: {
+            size: 18
+        }
+    };
+    var config = {
+        responsive: true
     }
-    const countSort = (arr, exp) => {
-        const output = new Array(arr.length);
-        const count = new Array(10).fill(0);
-        for (let num of arr) {
-            const digit = Math.floor(num / exp) % 10;
-            count[digit]++;
-        }
-        for (let i = 1; i < count.length; i++) {
-            count[i] += count[i - 1];
-        }
-        for (let i = arr.length - 1; i >= 0; i--) {
-            const digit = Math.floor(arr[i] / exp) % 10;
-            output[count[digit] - 1] = arr[i];
-            count[digit]--;
-        }
-        for (let i = 0; i < arr.length; i++) {
-            arr[i] = output[i];
-        }
+    Plotly.newPlot('graficaShell', data, layout, config);
+    //fin grafica
+    document.getElementById('DatosOrdenadosShell').innerHTML = lista;
+}
+
+function radixSort() {
+    var idx1, idx2, idx3, len1, len2, radix, radixKey;
+    var radices = {},
+        buckets = {},
+        curr;
+    var currLen, currBucket;
+    len1 = lista.length;
+    len2 = 10;
+    for (idx1 = 0; idx1 < len1; idx1++) {
+        radices[lista[idx1].toString().length] = 0;
     }
-    const max = getMax();
-    for (let exp = 1; Math.floor(max / exp) > 0; exp *= 10) {
-        countSort(arr, exp);
+    for (radix in radices) {
+        len1 = lista.length;
+        for (idx1 = 0; idx1 < len1; idx1++) {
+            curr = lista[idx1];
+            currLen = curr.toString().length;
+            if (currLen >= radix) {
+                radixKey = curr.toString()[currLen - radix];
+                if (!buckets.hasOwnProperty(radixKey)) {
+                    buckets[radixKey] = [];
+                }
+                buckets[radixKey].push(curr);
+            } else {
+                if (!buckets.hasOwnProperty('0')) {
+                    buckets['0'] = [];
+                }
+                buckets['0'].push(curr);
+            }
+        }
+        idx1 = 0;
+        for (idx2 = 0; idx2 < len2; idx2++) {
+            if (buckets[idx2] != null) {
+                currBucket = buckets[idx2];
+                len1 = currBucket.length;
+                for (idx3 = 0; idx3 < len1; idx3++) {
+                    lista[idx1++] = currBucket[idx3];
+                }
+            }
+        }
+        buckets = {};
     }
-    return arr;
-    console.log(max);
+    //console.log("Resultado del metodo Radix "+lista); 
+    //Grafica
+    var trace1 = {
+        type: 'bar',
+        x: cantidadDatosLista,
+        y: lista,
+        marker: {
+            color: '#C8A2C8',
+            line: {
+                width: 1
+            }
+        }
+    };
+    var data = [trace1];
+    var layout = {
+        title: 'Datos Radix',
+        font: {
+            size: 18
+        }
+    };
+    var config = {
+        responsive: true
+    }
+    Plotly.newPlot('graficaRadix', data, layout, config);
+    //fin grafica
+    document.getElementById('DatosOrdenadosRadix').innerHTML = lista;
 }

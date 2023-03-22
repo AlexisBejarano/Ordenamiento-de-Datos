@@ -42,8 +42,9 @@
                 <div class="textReacomodo" id="cantidadDatosIngresados">
                     Previsualización de datos ingresados
                 </div>
-                  <!-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ATENTO DEJAR ESTO TOODO PEGADOOOO PARA EVITAR BUG-------------------------------------------------------------------->
-                <textarea cols="30" id="contenido" placeholder="NO INGRESE DATOS AQUI" rows="4" style="min-height:100px;max-height:300px"></textarea>
+                <!-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ATENTO DEJAR ESTO TOODO PEGADOOOO PARA EVITAR BUG-------------------------------------------------------------------->
+                <textarea cols="30" id="contenido" placeholder="NO INGRESE DATOS AQUI" rows="4" style="min-height:100px;max-height:300px">
+                </textarea>
                 <!--ATENTO DEJAR ESTO TOODO PEGADOOOO PARA EVITAR BUG------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
             </div>
             <div class="graficaDesordenada" id="graficaDesordenada">
@@ -65,50 +66,100 @@
                 </div>
             </div>
             <hr/>
+            <div class="container-metodos-ordenamiento">
+                <p>
+                    Acomodo de burbuja
+                </p>
+                <button class="styleButton" onclick="ordenarBurbuja()" type="button">
+                    Buscar
+                </button>
+                <div id="graficaBurbuja">
+                    <!-- Plotly chart will be drawn inside this DIV -->
+                </div>
+                <p>
+                    Lista ordenada
+                </p>
+                <div class="listaOrdenada" id="DatosOrdenadosBurbuja">
+                </div>
+                <hr/>
+                <p>
+                    Argoritmo Burbujas bidireccional
+                </p>
+                <button class="styleButton" onclick="ordenarBidireccional()" type="button">
+                    Buscar
+                </button>
+                <div id="graficaBidireccional">
+                    <!-- Plotly chart will be drawn inside this DIV -->
+                </div>
+                <p>
+                    Lista ordenada
+                </p>
+                <div class="listaOrdenada" id="DatosOrdenadosBidireccional">
+                </div>
+                <hr/>
+                <p>
+                    Argoritmo de insercion
+                </p>
+                <button class="styleButton" onclick="MetodoIncersion()" type="button">
+                    Buscar
+                </button>
+                <div id="graficaInsercion">
+                    <!-- Plotly chart will be drawn inside this DIV -->
+                </div>
+                <p>
+                    Lista ordenada
+                </p>
+                <div class="listaOrdenada" id="DatosOrdenadosInsercion">
+                </div>
+                <hr/>
+                <p>
+                    Argoritmo de Casillas
+                </p>
+                <button class="styleButton" onclick="MetodoporCasillas()" type="button">
+                    Buscar
+                </button>
+                <div id="graficaCasillas">
+                    <!-- Plotly chart will be drawn inside this DIV -->
+                </div>
+                <p>
+                    Lista ordenada
+                </p>
+                <div class="listaOrdenada" id="DatosOrdenadosCasillas">
+                </div>
+                <hr/>
+                <p>
+                    Argoritmo de Shell
+                </p>
+                <button class="styleButton" onclick="MetodoShell()" type="button">
+                    Buscar
+                </button>
+                <div id="graficaShell">
+                    <!-- Plotly chart will be drawn inside this DIV -->
+                </div>
+                <p>
+                    Lista ordenada
+                </p>
+                <div class="listaOrdenada" id="DatosOrdenadosShell">
+                </div>
+                <hr/>
+                <p>
+                    Argoritmo de Radix
+                </p>
+                <button class="styleButton" onclick="radixSort()" type="button">
+                    Buscar
+                </button>
+                <div id="graficaRadix">
+                    <!-- Plotly chart will be drawn inside this DIV -->
+                </div>
+                <p>
+                    Lista ordenada
+                </p>
+                <div class="listaOrdenada" id="DatosOrdenadosRadix">
+                </div>
+                <hr/>
+            </div>
             <!--ACABA EL CONAINER-FLUID-->
         </div>
-        <p>
-            Acomodo de burbuja
-        </p>
-        <button class="styleButton" onclick="ordenarBurbuja()" type="button">
-            Buscar
-        </button>
-        <div id="graficaBurbuja">
-            <!-- Plotly chart will be drawn inside this DIV -->
-        </div>
-        <p>
-            Lista ordenada
-        </p>
-        <div id="DatosOrdenadosBurbuja">
-        </div>
-        <hr/>
-        <p>
-            Argoritmo Burbujas bidireccional
-        </p>
-        <button class="styleButton" onclick="ordenarBidireccional()" type="button">
-            Buscar
-        </button>
-        <hr/>
-        <p>
-            Argoritmo de insercion
-        </p>
-        <button class="styleButton" onclick="MetodoIncersion()" type="button">
-            Buscar
-        </button>
-        <hr/>
-        <p>
-            Argoritmo de Shell
-        </p>
-        <button class="styleButton" onclick="MetodoShell()" type="button">
-            Buscar
-        </button>
-        <hr/>
-        <p>
-            Argoritmo de Radix
-        </p>
-        <button class="styleButton" onclick="radixSort()" type="button">
-            Buscar
-        </button>
         <script crossorigin="anonymous" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js">
         </script>
         <script src="js/js.js">
