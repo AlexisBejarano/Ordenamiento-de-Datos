@@ -1,6 +1,7 @@
-let lista = [9,7,6,4,3,2,1];
+let lista = [25,5, 9, 4, 2, 5, 3, 1];
 let preLista = [];
 let cantidadDatosLista = 0;
+
 //Grafica
 var trace1 = {
     type: 'bar',
@@ -131,24 +132,23 @@ function busquedaSucesiva() {
     if (bandera == true) {
         document.getElementById("busquedaSucesivaDato").innerHTML = "No se encontro el numero";
     }
-     console.timeEnd();
+    console.timeEnd();
 }
 
 function ordenarBurbuja() {
     console.time();
-
     for (l = 0; l < lista.length - 1; l++) {
         for (k = 0; k <= lista.length - 2 - l; k++) {
             if (lista[k] > lista[k + 1]) {
                 let aux = lista[k];
                 lista[k] = lista[k + 1];
                 lista[k + 1] = aux;
-                console.log("if: " +lista);
+                console.log("if: " + lista);
             }
+            
         }
     }
-    console.timeEnd();
-    console.log('resultado final ' + lista);
+
     //Grafica
     var trace1 = {
         type: 'bar',
@@ -163,7 +163,7 @@ function ordenarBurbuja() {
     };
     var data = [trace1];
     var layout = {
-        title: 'Datos Ordenados Burbuja',
+        title: 'Orden Burbuja',
         font: {
             size: 18
         }
@@ -171,13 +171,14 @@ function ordenarBurbuja() {
     var config = {
         responsive: true
     }
-    Plotly.newPlot('graficaBurbuja', data, layout, config)
+    Plotly.newPlot('graficaBurbuja', data, layout, config);
     //fin grafica
+    console.timeEnd();
     document.getElementById('DatosOrdenadosBurbuja').innerHTML = lista;
 }
 
 function ordenarBidireccional() {
-    console.log('Lista inicial: '+lista);
+    console.log('Lista inicial: ' + lista);
     console.time();
     for (l = 0; l < lista.length - 1; l++) {
         for (k = 0; k <= lista.length - 2 - l; k++) {
@@ -185,7 +186,7 @@ function ordenarBidireccional() {
                 let aux = lista[k];
                 lista[k] = lista[k + 1];
                 lista[k + 1] = aux;
-                console.log('Izquiera a derecha: '+lista);
+                console.log('Izquiera a derecha: ' + lista);
             }
         }
         for (m = 0; m < lista.length - 2; m++) {
@@ -193,7 +194,7 @@ function ordenarBidireccional() {
                 let aux2 = lista[lista.length - 3 - m];
                 lista[lista.length - 3 - m] = lista[lista.length - 2 - m];
                 lista[lista.length - 2 - m] = aux2;
-                console.log('Derecha a Izquierda'+lista);
+                console.log('Derecha a Izquierda' + lista);
             }
         }
     }
@@ -234,10 +235,12 @@ function MetodoIncersion() {
         while (o>=0 && lista[o]>element){
             lista[o+1]=lista[o];
             o--;
+            console.log("while: "+lista);
         }
         lista[o+1]=element;
+        console.log("Despues del while: "+ lista);
     }
-    //console.log('resultado del metodo de insercion ' + lista);
+    console.log('resultado del metodo de insercion ' + lista);
     console.timeEnd();
 
     //Grafica
@@ -297,6 +300,7 @@ function MetodoporCasillas() {
             insertion(bucket);
             bucket.forEach(function(element) {
                 lista.push(element)
+                console.log("lista reconstruyendose"+lista);
             });
         });
         return lista;
@@ -311,9 +315,10 @@ function MetodoporCasillas() {
             }
             lista[j + 1] = temp;
         }
+        
         return lista;
     };
-    //console.log("Resultadod el metodo de casillas" + bucketSort(lista));
+    console.log("Resultadod el metodo de casillas" + bucketSort(lista));
     console.timeEnd();
     //Grafica
     var trace1 = {
@@ -353,10 +358,12 @@ function MetodoShell() {
 
             while (j >= incremento && lista[j - incremento] > dato) {
                 lista[j] = lista[j - incremento];
+                console.log(" cambio" + lista);
                 j -= incremento;
             }
 
             lista[j] = dato;
+            console.log("cambio " + lista);
         }
 
         if (incremento == 2) {
@@ -365,6 +372,7 @@ function MetodoShell() {
             incremento = parseInt(incremento * 5 / 11);
         }
     }
+    console.log("Final del metodo shell "+ lista);
     console.timeEnd();
 
 
@@ -432,6 +440,8 @@ function radixSort() {
                 len1 = currBucket.length;
                 for (idx3 = 0; idx3 < len1; idx3++) {
                     lista[idx1++] = currBucket[idx3];
+                    console.log("lista de currbucket: "+ currBucket[idx3])
+                    console.log("lista de for: "+ lista)
                 }
             }
         }
