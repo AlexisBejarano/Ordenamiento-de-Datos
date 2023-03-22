@@ -344,20 +344,31 @@ function MetodoporCasillas() {
 
 function MetodoShell() {
     console.time();
-    for (n = 0; n < lista.length - 1; n++) {
-        for (o = n + 1; o >= 0; o--) {
-            if ((lista[o - 1] > lista[o])) {
-                let aux = lista[o - 1];
-                lista[o - 1] = lista[o];
-                lista[o] = aux;
+    let incremento = lista.length / 2;
+
+    while (incremento > 0) {
+        for (let i = 0; i < lista.length; i++) {
+            let j = i;
+            let dato = lista[i];
+
+            while (j >= incremento && lista[j - incremento] > dato) {
+                lista[j] = lista[j - incremento];
+                j -= incremento;
             }
-            //  console.log(lista);
+
+            lista[j] = dato;
         }
-        //console.log('resultado de la vuelta '+ n +" lista: "+lista);
+
+        if (incremento == 2) {
+            incremento = 1;
+        } else {
+            incremento = parseInt(incremento * 5 / 11);
+        }
     }
-    //console.log('resultado del metodo de Shell ' + lista);
-    console.timeEnd();
-    //Grafica
+    console.timeEnd
+
+
+        //Grafica
     var trace1 = {
         type: 'bar',
         x: cantidadDatosLista,
