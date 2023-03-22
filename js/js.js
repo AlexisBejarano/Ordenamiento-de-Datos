@@ -114,6 +114,7 @@ function capturar() {
 }
 
 function busquedaSucesiva() {
+    console.time();
     let busqueda = document.getElementById("datoBusqueda").value;
     //console.log(busqueda);
     if (busqueda == "") {
@@ -130,6 +131,7 @@ function busquedaSucesiva() {
     if (bandera == true) {
         document.getElementById("busquedaSucesivaDato").innerHTML = "No se encontro el numero";
     }
+     console.timeEnd();
 }
 
 function ordenarBurbuja() {
@@ -144,8 +146,8 @@ function ordenarBurbuja() {
             }
         }
     }
-    //console.timeEnd();
-    console.log('resultado final ' + lista);
+    console.timeEnd();
+    //console.log('resultado final ' + lista);
     //Grafica
     var trace1 = {
         type: 'bar',
@@ -227,19 +229,18 @@ function ordenarBidireccional() {
 
 function MetodoIncersion() {
     console.time();
-    for (n = 0; n < lista.length - 1; n++) {
-        for (o = n + 1; o >= 0; o--) {
-            if ((lista[o - 1] > lista[o])) {
-                let aux = lista[o - 1];
-                lista[o - 1] = lista[o];
-                lista[o] = aux;
-            }
-            //  console.log(lista);
+    for (let n = 0; n < lista.length; n++) {
+        const element = lista[n];
+        let  o=n-1;
+        while (o>=0 && lista[o]>element){
+            lista[o+1]=lista[o];
+            o--;
         }
-        //console.log('resultado de la vuelta '+ n +" lista: "+lista);
+        lista[o+1]=element;
     }
     //console.log('resultado del metodo de insercion ' + lista);
     console.timeEnd();
+
     //Grafica
     var trace1 = {
         type: 'bar',
@@ -313,7 +314,7 @@ function MetodoporCasillas() {
         }
         return lista;
     };
-    console.log("Resultadod el metodo de casillas" + bucketSort(lista));
+    //console.log("Resultadod el metodo de casillas" + bucketSort(lista));
     console.timeEnd();
     //Grafica
     var trace1 = {
@@ -365,7 +366,7 @@ function MetodoShell() {
             incremento = parseInt(incremento * 5 / 11);
         }
     }
-    console.timeEnd
+    console.timeEnd();
 
 
         //Grafica
@@ -396,6 +397,7 @@ function MetodoShell() {
 }
 
 function radixSort() {
+    console.time();
     var idx1, idx2, idx3, len1, len2, radix, radixKey;
     var radices = {},
         buckets = {},
@@ -436,6 +438,7 @@ function radixSort() {
         }
         buckets = {};
     }
+     console.timeEnd();
     //console.log("Resultado del metodo Radix "+lista); 
     //Grafica
     var trace1 = {
