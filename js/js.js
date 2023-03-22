@@ -1,6 +1,8 @@
-let lista = [25,5, 9, 4, 2, 5, 3, 1];
+let listaDesordenada = [];
 let preLista = [];
 let cantidadDatosLista = 0;
+
+let lista = listaDesordenada;
 
 //Grafica
 var trace1 = {
@@ -45,7 +47,8 @@ function readFile(file) {
         //console.log(archivoLeido);
         //separamos el archivo por Enter y lo metemos al arreglo con el metodo .split('\n').
         //con .map(number) cambiamos el arreglo que era String a Entero.
-        lista = archivoLeido.split('\n').map(Number);
+        listaDesordenada = archivoLeido.split('\n').map(Number);
+
         //console.log("El arreglo es: ", lista);
         //Metemos en variable la cantidad que contiene la Lista.
         cantidadDatosLista = lista.length;
@@ -136,6 +139,7 @@ function busquedaSucesiva() {
 }
 
 function ordenarBurbuja() {
+    lista = listaDesordenada;
     console.time();
     for (l = 0; l < lista.length - 1; l++) {
         for (k = 0; k <= lista.length - 2 - l; k++) {
@@ -143,11 +147,12 @@ function ordenarBurbuja() {
                 let aux = lista[k];
                 lista[k] = lista[k + 1];
                 lista[k + 1] = aux;
-                console.log("if: " + lista);
+                //console.log("if: " + lista);
             }
             
         }
     }
+    console.timeEnd();
 
     //Grafica
     var trace1 = {
@@ -173,12 +178,13 @@ function ordenarBurbuja() {
     }
     Plotly.newPlot('graficaBurbuja', data, layout, config);
     //fin grafica
-    console.timeEnd();
+    
     document.getElementById('DatosOrdenadosBurbuja').innerHTML = lista;
 }
 
 function ordenarBidireccional() {
-    console.log('Lista inicial: ' + lista);
+    lista = listaDesordenada;
+    //console.log('Lista inicial: ' + lista);
     console.time();
     for (l = 0; l < lista.length - 1; l++) {
         for (k = 0; k <= lista.length - 2 - l; k++) {
@@ -186,7 +192,7 @@ function ordenarBidireccional() {
                 let aux = lista[k];
                 lista[k] = lista[k + 1];
                 lista[k + 1] = aux;
-                console.log('Izquiera a derecha: ' + lista);
+                //console.log('Izquiera a derecha: ' + lista);
             }
         }
         for (m = 0; m < lista.length - 2; m++) {
@@ -194,11 +200,11 @@ function ordenarBidireccional() {
                 let aux2 = lista[lista.length - 3 - m];
                 lista[lista.length - 3 - m] = lista[lista.length - 2 - m];
                 lista[lista.length - 2 - m] = aux2;
-                console.log('Derecha a Izquierda' + lista);
+                //console.log('Derecha a Izquierda' + lista);
             }
         }
     }
-    console.log('resultado del metodo bidireccional ' + lista);
+    //console.log('resultado del metodo bidireccional ' + lista);
     console.timeEnd();
     //Grafica
     var trace1 = {
@@ -228,6 +234,7 @@ function ordenarBidireccional() {
 }
 
 function MetodoIncersion() {
+    lista = listaDesordenada;
     console.time();
     for (let n = 0; n < lista.length; n++) {
         const element = lista[n];
@@ -235,12 +242,12 @@ function MetodoIncersion() {
         while (o>=0 && lista[o]>element){
             lista[o+1]=lista[o];
             o--;
-            console.log("while: "+lista);
+            //console.log("while: "+lista);
         }
         lista[o+1]=element;
-        console.log("Despues del while: "+ lista);
+        //onsole.log("Despues del while: "+ lista);
     }
-    console.log('resultado del metodo de insercion ' + lista);
+    //console.log('resultado del metodo de insercion ' + lista);
     console.timeEnd();
 
     //Grafica
@@ -271,6 +278,7 @@ function MetodoIncersion() {
 }
 
 function MetodoporCasillas() {
+    lista = listaDesordenada;
     console.time();
     const bucketSort = lista => {
         if (lista.length === 0) {
@@ -300,7 +308,7 @@ function MetodoporCasillas() {
             insertion(bucket);
             bucket.forEach(function(element) {
                 lista.push(element)
-                console.log("lista reconstruyendose"+lista);
+                //console.log("lista reconstruyendose"+lista);
             });
         });
         return lista;
@@ -318,7 +326,7 @@ function MetodoporCasillas() {
         
         return lista;
     };
-    console.log("Resultadod el metodo de casillas" + bucketSort(lista));
+    //console.log("Resultadod el metodo de casillas" + bucketSort(lista));
     console.timeEnd();
     //Grafica
     var trace1 = {
@@ -348,6 +356,7 @@ function MetodoporCasillas() {
 }
 
 function MetodoShell() {
+    lista = listaDesordenada;
     console.time();
     let incremento = lista.length / 2;
 
@@ -358,12 +367,12 @@ function MetodoShell() {
 
             while (j >= incremento && lista[j - incremento] > dato) {
                 lista[j] = lista[j - incremento];
-                console.log(" cambio" + lista);
+                //console.log(" cambio" + lista);
                 j -= incremento;
             }
 
             lista[j] = dato;
-            console.log("cambio " + lista);
+            //console.log("cambio " + lista);
         }
 
         if (incremento == 2) {
@@ -372,7 +381,7 @@ function MetodoShell() {
             incremento = parseInt(incremento * 5 / 11);
         }
     }
-    console.log("Final del metodo shell "+ lista);
+    //console.log("Final del metodo shell "+ lista);
     console.timeEnd();
 
 
@@ -404,6 +413,7 @@ function MetodoShell() {
 }
 
 function radixSort() {
+    lista = listaDesordenada;
     console.time();
     var idx1, idx2, idx3, len1, len2, radix, radixKey;
     var radices = {},
@@ -440,8 +450,8 @@ function radixSort() {
                 len1 = currBucket.length;
                 for (idx3 = 0; idx3 < len1; idx3++) {
                     lista[idx1++] = currBucket[idx3];
-                    console.log("lista de currbucket: "+ currBucket[idx3])
-                    console.log("lista de for: "+ lista)
+                    //console.log("lista de currbucket: "+ currBucket[idx3])
+                    //console.log("lista de for: "+ lista)
                 }
             }
         }
