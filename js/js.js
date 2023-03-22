@@ -1,4 +1,4 @@
-let lista = [9, 9, 6, 6, 2, 2, 9, 9, 5, 5, 1, 1, 9, 9];
+let lista = [9,7,6,4,3,2,1];
 let preLista = [];
 let cantidadDatosLista = 0;
 //Grafica
@@ -136,18 +136,19 @@ function busquedaSucesiva() {
 
 function ordenarBurbuja() {
     console.time();
+
     for (l = 0; l < lista.length - 1; l++) {
         for (k = 0; k <= lista.length - 2 - l; k++) {
             if (lista[k] > lista[k + 1]) {
                 let aux = lista[k];
                 lista[k] = lista[k + 1];
                 lista[k + 1] = aux;
-                //console.log("if: " +lista);
+                console.log("if: " +lista);
             }
         }
     }
     console.timeEnd();
-    //console.log('resultado final ' + lista);
+    console.log('resultado final ' + lista);
     //Grafica
     var trace1 = {
         type: 'bar',
@@ -176,7 +177,7 @@ function ordenarBurbuja() {
 }
 
 function ordenarBidireccional() {
-    //console.log('La lista es: ' + lista);
+    console.log('Lista inicial: '+lista);
     console.time();
     for (l = 0; l < lista.length - 1; l++) {
         for (k = 0; k <= lista.length - 2 - l; k++) {
@@ -184,7 +185,7 @@ function ordenarBidireccional() {
                 let aux = lista[k];
                 lista[k] = lista[k + 1];
                 lista[k + 1] = aux;
-                //console.log('resultado final if 1 | '+lista);
+                console.log('Izquiera a derecha: '+lista);
             }
         }
         for (m = 0; m < lista.length - 2; m++) {
@@ -192,13 +193,11 @@ function ordenarBidireccional() {
                 let aux2 = lista[lista.length - 3 - m];
                 lista[lista.length - 3 - m] = lista[lista.length - 2 - m];
                 lista[lista.length - 2 - m] = aux2;
-                //console.log('resultado if '+lista);
+                console.log('Derecha a Izquierda'+lista);
             }
-            //console.log('resultado del for 2 | '+lista);
         }
-        //console.log('resultado final de los dos for | '+lista);
     }
-    //console.log('resultado del metodo bidireccional ' + lista);
+    console.log('resultado del metodo bidireccional ' + lista);
     console.timeEnd();
     //Grafica
     var trace1 = {
